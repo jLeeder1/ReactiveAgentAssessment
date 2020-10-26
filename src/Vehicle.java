@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
+
 class Vehicle extends Entity{
 	public boolean carryingSample;
 	
@@ -10,8 +12,8 @@ class Vehicle extends Entity{
 
 	public void act(Field f, Mothership m, ArrayList<Rock> rocksCollected)
 	{
-		actCollaborative(f,m,rocksCollected);
-		//actSimple(f,m,rocksCollected);
+		// actCollaborative(f,m,rocksCollected);
+		actSimple(f,m,rocksCollected);
 	}
 	
 	
@@ -21,5 +23,14 @@ class Vehicle extends Entity{
 
 	public void actSimple(Field f, Mothership m, ArrayList<Rock> rocksCollected){
 		//complete this method
+		Random random = new Random();
+		UpdateLocation(f, new Location(random.nextInt(25) , random.nextInt(25)));
+	}
+
+	private void UpdateLocation(Field field, Location location){
+		field.clearLocation(location);
+		field.place(this, location);
+		field.clearLocation(this.location);
+		this.setLocation(location);
 	}
 }

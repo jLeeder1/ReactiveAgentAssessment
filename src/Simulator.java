@@ -98,8 +98,9 @@ public class Simulator
        for(Iterator<Vehicle> it = vehicles.iterator(); it.hasNext(); ) {
             Vehicle v = it.next();
             v.act(tempField,mothership,rocksToRemove);
+           System.out.println("Vehicle location:" + v.getLocation().toString());
        }
-   		
+
        for(Iterator<Rock> it = rocksToRemove.iterator(); it.hasNext(); ) {
        		Rock r = it.next();
        		//tempField.clearLocation(r.getLocation());

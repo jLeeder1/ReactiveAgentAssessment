@@ -77,7 +77,7 @@ public class SimulatorView extends JFrame
         pack();
         setVisible(true);
     }
- /*   
+
     public JPanel makeParametersPanel(){
     	JPanel panel = new JPanel();
     	JButton stepOnceButton = new JButton("Step Once");
@@ -92,7 +92,7 @@ public class SimulatorView extends JFrame
     	panel.add(stepOnceButton);
     	return panel;
     }
-*/
+
     /**
      * Method called when application is quit
      */
@@ -126,7 +126,7 @@ public class SimulatorView extends JFrame
     /**
      * Show the current status of the field.
      * @param step Which iteration step it is.
-     * @param stats Status of the field to be represented.
+     * @param field Status of the field to be represented.
      */
     public void showStatus(int step, Field field)
     {
