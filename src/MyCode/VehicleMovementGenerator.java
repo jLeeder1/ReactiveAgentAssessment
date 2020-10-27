@@ -40,17 +40,19 @@ public class VehicleMovementGenerator {
             newLocation = new Location(vehicle.getLocation().getRow(), vehicle.getLocation().getCol() + 1);
         }
         // Move down
-        else if(isMovingVertically && !isMovingPositive){
+        else if(isMovingVertically){
             newLocation = new Location(vehicle.getLocation().getRow(), vehicle.getLocation().getCol() - 1);
         }
         // Move right
-        else if(!isMovingVertically && isMovingPositive){
+        else if(isMovingPositive){
             newLocation = new Location(vehicle.getLocation().getRow() + 1, vehicle.getLocation().getCol());
         }
         // Move left
         else{
             newLocation = new Location(vehicle.getLocation().getRow() - 1, vehicle.getLocation().getCol() + 1);
         }
+
+        newLocation = WrapLocation(field, newLocation);
 
         UpdateLocation(field, newLocation, vehicle);
     }
@@ -60,6 +62,23 @@ public class VehicleMovementGenerator {
         field.place(vehicle, location);
         field.clearLocation(vehicle.getLocation());
         vehicle.setLocation(location);
+    }
+
+    private Location WrapLocation(Field field, Location location){
+        if(location.getRow() < 0){
+            return new Location(field.getWidth() - 1, location.getCol());
+        }
+        else if(location.getRow() > field.getWidth() - 1){
+            return new Location(0, location.getCol());
+        }
+        else if(location.getCol() < 0){
+            return new Location(location.getRow(), field.getDepth() - 1);
+        }
+        else if(location.getCol() > field.getDepth() - 1){
+            return new Location(location.getRow(), 0);
+        }
+
+        return location;
     }
 
     /**
