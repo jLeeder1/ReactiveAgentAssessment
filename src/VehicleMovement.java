@@ -27,6 +27,23 @@ public class VehicleMovement {
         UpdateLocation(field, bestLocation, vehicle);
     }
 
+    public void MoveVehicleDownCrumbGradient(Field field, Vehicle vehicle){
+        ArrayList<Location> locations = field.getAllfreeAdjacentLocations(vehicle.getLocation());
+        int bestCrumbQuant = 0;
+        Location bestLocation = vehicle.getLocation();
+
+        for(Location location: locations) {
+            int tempCrumbQuant = field.getCrumbQuantityAt(location);
+
+            if(tempCrumbQuant > bestCrumbQuant){
+                bestLocation = location;
+                bestCrumbQuant = tempCrumbQuant;
+            }
+        }
+
+        UpdateLocation(field, bestLocation, vehicle);
+    }
+
     /**
      * Clears the location a vehicle is moving to in the field and moves the vehicle to that location
      * @param field
