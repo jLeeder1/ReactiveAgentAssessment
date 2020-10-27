@@ -1,19 +1,17 @@
 package GivenCode;
 
-import MyCode.VehicleMovementGenerator;
-
+import MyCode.VehicleMovement;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Vehicle extends Entity{
 	public boolean carryingSample;
-	private VehicleMovementGenerator vehicleMovementGenerator;
+	private VehicleMovement vehicleMovement;
 	
 	public Vehicle(Location l){
 		super(l);	
 		this.carryingSample = false;
 
-		vehicleMovementGenerator = new VehicleMovementGenerator();
+		vehicleMovement = new VehicleMovement();
 	}
 
 	public void act(Field f, Mothership m, ArrayList<Rock> rocksCollected)
@@ -21,21 +19,32 @@ public class Vehicle extends Entity{
 		// actCollaborative(f,m,rocksCollected);
 		actSimple(f,m,rocksCollected);
 	}
-	
-	
+
 	public void actCollaborative(Field f, Mothership m, ArrayList<Rock> rocksCollected){
 		//complete this method
 	}
 
 	public void actSimple(Field f, Mothership m, ArrayList<Rock> rocksCollected){
 		//complete this method
-		vehicleMovementGenerator.MoveVehicle(f,this);
-	}
 
-	private void UpdateLocation(Field field, Location location){
-		field.clearLocation(location);
-		field.place(this, location);
-		field.clearLocation(this.location);
-		this.setLocation(location);
+		// If at mother ship drop sample
+		if(carryingSample == true && f.isNeighbourTo(this.location, Mothership.class)){
+			carryingSample = false;
+		}
+
+		// Travel back to Mother ship with sample
+		else if(carryingSample == true && !f.isNeighbourTo(this.location, Mothership.class)){
+			vehicleMovement.MoveVehicleUpSignalGradient(f, this);
+		}
+
+		// If detect a sample pick it up
+		else if(f.isNeighbourTo(this.location, Rock.class)){
+			Location loc = f.getNeighbour(this.location, Rock.class);
+			carryingSample = true;
+			f.clearLocation(loc);
+		}
+
+		// Move randomly
+		vehicleMovement.MoveVehicleRandomly(f,this);
 	}
 }

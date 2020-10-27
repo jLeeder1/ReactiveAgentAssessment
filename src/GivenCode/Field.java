@@ -150,7 +150,6 @@ public class Field
 		}
 		return freeLocations;
 	}
-	
 
 	/**
 	 * Try to find a free location that is adjacent to the
@@ -218,7 +217,7 @@ public class Field
 	
 	/**
 	 * Detect if specified class is adjacent
-	 * @param location The location from which to generate adjacencies.
+	 * @param loc The location from which to generate adjacencies.
 	 * @return boolean.
 	 */
 	public <T> boolean isNeighbourTo(Location loc, Class<T> c)
