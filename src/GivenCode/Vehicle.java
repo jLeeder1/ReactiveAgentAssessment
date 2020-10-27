@@ -27,13 +27,14 @@ public class Vehicle extends Entity{
 	public void actSimple(Field f, Mothership m, ArrayList<Rock> rocksCollected){
 		//complete this method
 
-		// Travel back to Mothership with sample
-		if(carryingSample == true && !f.isNeighbourTo(this.location, Mothership.class)){
-			vehicleMovement.MoveVehicleUpSignalGradient(f, this);
+		// If at mother ship drop sample
+		if(carryingSample == true && f.isNeighbourTo(this.location, Mothership.class)){
+			carryingSample = false;
+		}
 
-			if(f.isNeighbourTo(this.location, Mothership.class)){
-				carryingSample = false;
-			}
+		// Travel back to Mother ship with sample
+		else if(carryingSample == true && !f.isNeighbourTo(this.location, Mothership.class)){
+			vehicleMovement.MoveVehicleUpSignalGradient(f, this);
 		}
 
 		// If detect a sample pick it up
