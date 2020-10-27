@@ -1,19 +1,19 @@
 package GivenCode;
 
-import MyCode.VehicleMovementGenerator;
+import MyCode.CollisionDetection;
+import MyCode.VehicleRandomMovement;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Vehicle extends Entity{
 	public boolean carryingSample;
-	private VehicleMovementGenerator vehicleMovementGenerator;
+	private VehicleRandomMovement vehicleRandomMovement;
 	
 	public Vehicle(Location l){
 		super(l);	
 		this.carryingSample = false;
 
-		vehicleMovementGenerator = new VehicleMovementGenerator();
+		vehicleRandomMovement = new VehicleRandomMovement();
 	}
 
 	public void act(Field f, Mothership m, ArrayList<Rock> rocksCollected)
@@ -29,7 +29,7 @@ public class Vehicle extends Entity{
 
 	public void actSimple(Field f, Mothership m, ArrayList<Rock> rocksCollected){
 		//complete this method
-		vehicleMovementGenerator.MoveVehicle(f,this);
+		vehicleRandomMovement.MoveVehicleRandomly(f,this);
 	}
 
 	private void UpdateLocation(Field field, Location location){
