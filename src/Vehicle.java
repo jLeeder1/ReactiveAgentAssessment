@@ -23,25 +23,29 @@ public class Vehicle extends Entity{
 		// If at mother ship drop sample
 		if(carryingSample == true && f.isNeighbourTo(this.location, Mothership.class)){
 			carryingSample = false;
+			return;
 		}
 
 		// If carrying sample and not at base drop crumb and travel up signal gradient
-		else if(carryingSample == true && !f.isNeighbourTo(this.location, Mothership.class)){
+		if(carryingSample == true && !f.isNeighbourTo(this.location, Mothership.class)){
 			f.dropCrumbs(this.location, 2);
 			vehicleMovement.MoveVehicleUpSignalGradient(f, this);
+			return;
 		}
 
 		// If detect a sample pick it up
-		else if(f.isNeighbourTo(this.location, Rock.class)){
+		if(f.isNeighbourTo(this.location, Rock.class)){
 			Location loc = f.getNeighbour(this.location, Rock.class);
 			carryingSample = true;
 			rocksCollected.add((Rock) f.getObjectAt(loc));
+			return;
 		}
 
 		// If sense crumbs pick one up and travel down gradient
-		else if(f.getCrumbQuantityAt(this.location) > 0){
+		if(f.getCrumbQuantityAt(this.location) > 0){
 			f.pickUpACrumb(this.location);
 			vehicleMovement.MoveVehicleDownCrumbGradient(f, this);
+			return;
 		}
 
 		// Move randomly
@@ -53,18 +57,21 @@ public class Vehicle extends Entity{
 		// If at mother ship drop sample
 		if(carryingSample == true && f.isNeighbourTo(this.location, Mothership.class)){
 			carryingSample = false;
+
 		}
 
 		// Travel back to Mother ship with sample
-		else if(carryingSample == true && !f.isNeighbourTo(this.location, Mothership.class)){
+		if(carryingSample == true && !f.isNeighbourTo(this.location, Mothership.class)){
 			vehicleMovement.MoveVehicleUpSignalGradient(f, this);
+			return;
 		}
 
 		// If detect a sample pick it up
-		else if(f.isNeighbourTo(this.location, Rock.class)){
+		if(f.isNeighbourTo(this.location, Rock.class)){
 			Location loc = f.getNeighbour(this.location, Rock.class);
 			carryingSample = true;
 			rocksCollected.add((Rock) f.getObjectAt(loc));
+			return;
 		}
 
 		// Move randomly

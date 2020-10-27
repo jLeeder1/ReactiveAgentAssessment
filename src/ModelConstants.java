@@ -37,8 +37,9 @@ class ModelConstants {
     public static final Color vehicleCarryingSampleColor = Color.blue;
     public static final Color mothershipColor = Color.magenta;	
     	
-    public static Random random=null;
-    
+    // public static Random random=null;
+    public static Random random= new Random();
+
     public static void setRandom()
     {
     	random = new Random(RANDOM_SEED);
