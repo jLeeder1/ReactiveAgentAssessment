@@ -29,15 +29,18 @@ public class VehicleMovement {
 
     public void MoveVehicleDownCrumbGradient(Field field, Vehicle vehicle){
         ArrayList<Location> locations = field.getAllfreeAdjacentLocations(vehicle.getLocation());
+        int currentBestSignal = field.getSignalStrength(vehicle.getLocation());
         int bestCrumbQuant = 0;
         Location bestLocation = vehicle.getLocation();
 
         for(Location location: locations) {
             int tempCrumbQuant = field.getCrumbQuantityAt(location);
+            int tempSignal = field.getSignalStrength(location);
 
-            if(tempCrumbQuant > bestCrumbQuant){
+            if(tempCrumbQuant > bestCrumbQuant && tempSignal < currentBestSignal){
                 bestLocation = location;
                 bestCrumbQuant = tempCrumbQuant;
+                currentBestSignal = tempSignal;
             }
         }
 
