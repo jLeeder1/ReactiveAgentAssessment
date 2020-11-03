@@ -57,7 +57,6 @@ public class Vehicle extends Entity{
 		// If at mother ship drop sample
 		if(carryingSample == true && f.isNeighbourTo(this.location, Mothership.class)){
 			carryingSample = false;
-
 		}
 
 		// Travel back to Mother ship with sample

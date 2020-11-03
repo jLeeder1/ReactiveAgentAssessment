@@ -22,7 +22,9 @@ class ModelConstants {
     // The number of rock locations.
     public static int ROCK_LOCATIONS = 300;
 
-    
+    // Crumb decay rate
+    public static int CRUMB_DECAY_RATE = 50;
+
     // The probability that an obstacle will be created in any given grid position.
     public static double OBSTACLE_CREATION_PROBABILITY = 0.01;
     public static double VEHICLE_CREATION_PROBABILITY = 0.01; 	

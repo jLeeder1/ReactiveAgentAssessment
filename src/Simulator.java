@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 
 /**
@@ -22,6 +23,7 @@ public class Simulator
     private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
+
     
     /**
      * Construct a simulation field with default size.
@@ -105,7 +107,11 @@ public class Simulator
        		tempField.clearLocation(r.getLocation());
        		rocks.remove(r);
        }
-              
+
+       if(step % ModelConstants.CRUMB_DECAY_RATE == 0){
+           tempField.reduceCrumbs();
+       }
+
       field = tempField;
       view.showStatus(step, field);
     }
